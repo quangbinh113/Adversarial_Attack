@@ -1,6 +1,7 @@
 import numpy as np
 import torch
-
+import cv2
+import matplotlib.pyplot as plt
 
 class EarlyStopping:
     def __init__(self, patience=7, verbose=False, delta=0):
@@ -46,3 +47,56 @@ class EarlyStopping:
         else:
             torch.save(g.state_dict(), 'Generator.pth')
             torch.save(d.state_dict(), 'Discriminator.pth')
+
+
+def to_std_float(image):
+    """Converts image to 0 to 1 float to avoid wrapping that occurs with uint8"""
+    image.astype(np.float16, copy=False)
+    image = np.multiply(image, 1/255)
+    return image
+
+def to_std_uint8(image):
+    """Properly handles the conversion to uint8"""
+    image = cv2.convertScaleAbs(image, alpha=255)
+    return image
+
+def display_image(image, title='Image'):
+    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB
+    plt.title(title)
+    plt.show()
+
+def add_salt_and_pepper(image, noise_prob=0.1, show=True):
+    """Converts pixels of `image` to black or white independently each with probability `noise_prob`"""
+    image = to_std_float(image)
+    white_value = int(2 / noise_prob)
+    noise = np.random.randint(white_value + 1, size=(image.shape[0], image.shape[1], 1))
+    image = np.where(noise == 0, 0, image)
+    image = np.where(noise == white_value, 1, image)
+    image = to_std_uint8(image)
+    if show:
+        display_image(image, 'Image with Salt & Pepper Noise')
+    return image
+
+def add_gaussian_noise(image, std_dev=0.15, show=True):
+    image = to_std_float(image)
+    noise = np.random.normal(0, std_dev, (image.shape[0],image.shape[1], 3))
+    image += noise
+    image = to_std_uint8(image)
+    if show:
+        display_image(image, 'Image with Gaussian Noise')
+    return image
+
+def show_median_blur(image, kernel_size=3, title ='Median Blur Result'):
+    image = cv2.medianBlur(image, kernel_size)
+    display_image(image, title)
+    return image
+
+def show_mean_blur(image, kernel_size=(5, 5), title ='Mean Filter Result'):
+    image = cv2.blur(image, kernel_size)
+    display_image(image, title)
+    return image
+
+def show_gaussian_blur(image, kernel_size=(5, 5), std_dev=0, title ='Gaussian Smoothing Result'):
+    image = cv2.GaussianBlur(image, kernel_size, std_dev)
+    display_image(image, title)
+    return image
