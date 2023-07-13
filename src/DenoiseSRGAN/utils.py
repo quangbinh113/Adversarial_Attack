@@ -49,23 +49,62 @@ class EarlyStopping:
             torch.save(d.state_dict(), 'Discriminator.pth')
 
 
-def to_std_float(image):
+from typing import List, Tuple
+import math
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.signal import wiener
+
+COLORS = ('blue', 'green', 'red')
+
+def to_std_float(image: np.ndarray) -> np.ndarray:
     """Converts image to 0 to 1 float to avoid wrapping that occurs with uint8"""
     image.astype(np.float16, copy=False)
     image = np.multiply(image, 1/255)
     return image
 
-def to_std_uint8(image):
+def to_std_uint8(image: np.ndarray) -> np.ndarray:
     """Properly handles the conversion to uint8"""
     image = cv2.convertScaleAbs(image, alpha=255)
     return image
 
-def display_image(image, title='Image'):
-    plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  # Convert BGR to RGB
-    plt.title(title)
-    plt.show()
+def show_images(images: List[np.ndarray], labels: List[str]=None, max_num_cols: int=4, fig_size: Tuple[int, int]=None):
+    """
+    Shows a grid of images (color space = BGR, shape = (h, w, c))
+    """
+    ncols = min(len(images), max_num_cols)
+    nrows = math.ceil(len(images) / ncols)
+    if not fig_size:
+        fig_size = (5 * ncols, 5 * nrows)
+    fig, axs = plt.subplots(nrows, ncols, squeeze=False, figsize=fig_size)
+    for i, image in enumerate(images):
+        ax = axs[divmod(i, ncols)]
+        ax.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
+        ax.set(xticklabels=[], yticklabels=[], xticks=[], yticks=[])
+        if labels:
+            ax.set_title(labels[i])
 
-def add_salt_and_pepper(image, noise_prob=0.1, show=True):
+def show_image_histograms(images: List[np.ndarray], labels: List[str]=None, max_freq: int=None, max_num_cols: int=4, fig_size: Tuple[int, int]=None):
+    """
+    Shows a grid of image histograms (color space = BGR, shape = (h, w, c))
+    """
+    ncols = min(len(images), max_num_cols)
+    nrows = math.ceil(len(images) / ncols)
+    if not fig_size:
+        fig_size = (5 * ncols, 5 * nrows)
+    if not max_freq:
+        max_freq = images[0].size / 16
+    fig, axs = plt.subplots(nrows, ncols, squeeze=False, figsize=fig_size)
+    for i, image in enumerate(images):
+        ax = axs[divmod(i, ncols)]
+        for c in range(3):
+            ax.hist(image[:, :, c].flatten(), color=COLORS[c], bins=256, label=COLORS[c], histtype='step', alpha=0.5)
+            ax.set_ylim(0, max_freq)
+        if labels:
+            ax.set_title(labels[i])
+
+def add_salt_and_pepper(image: np.ndarray, noise_prob: float=0.1) -> np.ndarray:
     """Converts pixels of `image` to black or white independently each with probability `noise_prob`"""
     image = to_std_float(image)
     white_value = int(2 / noise_prob)
@@ -73,30 +112,11 @@ def add_salt_and_pepper(image, noise_prob=0.1, show=True):
     image = np.where(noise == 0, 0, image)
     image = np.where(noise == white_value, 1, image)
     image = to_std_uint8(image)
-    if show:
-        display_image(image, 'Image with Salt & Pepper Noise')
     return image
 
-def add_gaussian_noise(image, std_dev=0.15, show=True):
+def add_gaussian_noise(image: np.ndarray, std_dev: float=0.2):
     image = to_std_float(image)
     noise = np.random.normal(0, std_dev, (image.shape[0],image.shape[1], 3))
     image += noise
     image = to_std_uint8(image)
-    if show:
-        display_image(image, 'Image with Gaussian Noise')
-    return image
-
-def show_median_blur(image, kernel_size=3, title ='Median Blur Result'):
-    image = cv2.medianBlur(image, kernel_size)
-    display_image(image, title)
-    return image
-
-def show_mean_blur(image, kernel_size=(5, 5), title ='Mean Filter Result'):
-    image = cv2.blur(image, kernel_size)
-    display_image(image, title)
-    return image
-
-def show_gaussian_blur(image, kernel_size=(5, 5), std_dev=0, title ='Gaussian Smoothing Result'):
-    image = cv2.GaussianBlur(image, kernel_size, std_dev)
-    display_image(image, title)
     return image
