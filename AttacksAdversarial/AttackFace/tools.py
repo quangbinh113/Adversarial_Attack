@@ -93,8 +93,7 @@ def get_found_boxes(image, detector, upsample=1):
     """
     try: found_faces = detector(image, upsample)
     except:
-        error_str = ('get_found_boxes detector object failed to find boxes' 
-            ' -- do you have the method defined properly?')
+        error_str = ('get_found_boxes detector object failed to find boxes')
         sys.exit(error_str)
     found_box_list = []
     for face in found_faces:

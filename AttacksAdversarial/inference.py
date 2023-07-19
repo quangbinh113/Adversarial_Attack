@@ -42,7 +42,7 @@ if __name__ == "__main__":
     for detector_name, _ in detector_dict.items():
         count = 0
         for img_path in img_paths:
-            img_num = re.findall(r'\.jpg', str(img_path))[0]
+            img_num = re.findall(r'[0-9]+[0-9]+\.jpg', str(img_path))[0]
             tunnel_dict['total_img_count'] += 1
             count += 1 
             if (count > num_imgs): break
