@@ -35,6 +35,7 @@ In the 'AdversarialDefense/Denoising/DenoisingUsingFilters' subfolder, you'll fi
 #### 3.2.2 Denoising using SRGAN
 
 In the 'AdversarialDefense/Denoising/DenoisingUsingSRGAN' subfolder, you'll find the implementation of denoising adversarial examples using SRGAN (Super-Resolution Generative Adversarial Network).
+
 ![alt text](https://github.com/quangbinh113/CV20222_Adversarial_Attack/blob/main/AdversarialDefense/models/visualize.png?raw=true)
 
 ### Usage
