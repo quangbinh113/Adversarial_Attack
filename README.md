@@ -47,7 +47,7 @@ In the 'AdversarialDefense/Denoising/DenoisingUsingSRGAN' subfolder, you'll find
 
 ## License
 
-[MIT License](LICENSE)
+[GPL-3.0 License](LICENSE)
 
 ## Contributors
 
