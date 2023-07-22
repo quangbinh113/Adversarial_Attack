@@ -4,7 +4,7 @@ This Git repository contains code implementations related to Adversarial Face De
 
 ## 1. Face Detection (YOLOv5 on Human Face Dataset)
 
-The 'face_detection' folder contains the implementation of YOLOv5 for face detection on the Wider Face dataset. The folder includes the necessary scripts, configuration files, and dataset loading code to train and evaluate the YOLOv5 model on the Wider Face dataset.
+The 'face_detection' folder contains the implementation of YOLOv5 for face detection on the Human Face dataset. The folder includes the necessary scripts, configuration files, and dataset loading code to train and evaluate the YOLOv5 model on the Wider Face dataset.
 
 ### Usage
 - Detailed usage instructions and setup guide can be found in the 'face_detection' folder.
