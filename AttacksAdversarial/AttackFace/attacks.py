@@ -32,7 +32,7 @@ def create_noisy_image(original_img_path,  output_dir, use_mult_noise=False):
     Returns:
         image_file_path: the path to the output image you just created
     """
-    epsilon = np.random.choice([176,112,16,32,224,48,64,96])
+    epsilon = np.random.choice([50])
     if (not os.path.isfile(original_img_path)):
         sys.exit('Bad input image path: ' + original_img_path)
     if (not os.path.exists(output_dir)): os.makedirs(output_dir)
