@@ -22,10 +22,10 @@ def draw_img_noise_pair_arrays(image_noise_pairs, epsilon, img_num, output_dir, 
     for test_num, img_pair in enumerate(image_noise_pairs):
         attacked_img = img_pair.img
         noise_img = img_pair.noise
-        noise_str = 'face_unlabeled_multnoise' if (use_mult_noise) else 'face_unlabeled_addnoise'
-        file_suffix = '_eps' + str(epsilon) + '_testnum' + str(test_num) + '_' + img_num +'.jpg'
+        # noise_str = 'face_unlabeled_multnoise' if (use_mult_noise) else 'face_unlabeled_addnoise'
+        file_suffix =  str(test_num) 
 
-        image_file_name = 'face_unlabeled_' + noise_str + file_suffix
+        image_file_name = file_suffix
         image_file_path = os.path.join(output_dir,image_file_name)
         im_pix = Image.fromarray(attacked_img)
         im_pix.save(image_file_path)
