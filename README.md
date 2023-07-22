@@ -45,6 +45,9 @@ In the 'AdversarialDefense/Denoising/DenoisingUsingSRGAN' subfolder, you'll find
 
 ## Contributors
 
-- [Your Name](https://github.com/yourusername) - Main Contributor and Developer
-- [Collaborator 1](https://github.com/collaborator1)
-- [Collaborator 2](https://github.com/collaborator2)
+- [Truong Quang Binh](https://github.com/quangbinh113)
+- [Hoang Xuan Viet](https://github.com/collaborator1)
+- [Tran Cat Khanh](https://github.com/collaborator2)
+- [Le Tran Thang](https://github.com/thang662)
+- [Nguyen Thien Hoan](https://github.com/collaborator2)
+
