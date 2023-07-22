@@ -17,6 +17,17 @@ def addGaussNoise(data, sigma):
     noise = random_noise(data, mode='gaussian', var=sigma2, clip=True)
     return noise
 
+def nonlinear_filter(image, kernel_size=5):
+    # Convert the image to the appropriate data type and range for OpenCV
+    image = (image * 255).astype(np.uint8)
+
+    # Apply the median filter
+    denoised_image = cv2.medianBlur(image, kernel_size)
+
+    # Convert the denoised image back to the range [0, 1]
+    denoised_image = denoised_image.astype(np.float32) / 255.0
+
+    return denoised_image
 
 class MyDataset(Dataset):
     def __init__(self, path, transform, sigma=30, ex=1):
@@ -33,6 +44,7 @@ class MyDataset(Dataset):
         tempImg = Image.open(tempImg).convert('RGB')
         Img = np.array(self.transform(tempImg))/255
         nImg = addGaussNoise(Img, self.sigma)
+        nImg = nonlinear_filter(nImg)
         Img = torch.tensor(Img.transpose(2,0,1))
         nImg = torch.tensor(nImg.transpose(2,0,1))
         return Img, nImg
