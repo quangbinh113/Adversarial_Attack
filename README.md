@@ -49,7 +49,7 @@ In the 'AdversarialDefense/Denoising/DenoisingUsingSRGAN' subfolder, you'll find
 
 - [Truong Quang Binh](https://github.com/quangbinh113)
 - [Hoang Xuan Viet](https://github.com/collaborator1)
-- [Tran Cat Khanh](https://github.com/collaborator2)
+- [Tran Cat Khanh](https://github.com/khanhha1005)
 - [Le Tran Thang](https://github.com/thang662)
 - [Nguyen Thien Hoan](https://github.com/collaborator2)
 
