@@ -12,6 +12,9 @@ The 'face_detection' folder contains the implementation of YOLOv5 for face detec
 ## 2. Adversarial Attack
 
 The 'AdversarialAttack' folder contains code related to adversarial attacks on deep learning models, particularly face detection models. Various attack techniques like FGSM,  Adding noise to the face after face detection are implemented to generate adversarial examples for the face detection model.
+### 2.1  Adding noise to the face after face detection
+### 2.2  FGSM 
+In the folder AttacksAdversarial , run the file 
 
 ### Usage
 - Detailed usage instructions and setup guide can be found in the 'AdversarialAttack' folder.
