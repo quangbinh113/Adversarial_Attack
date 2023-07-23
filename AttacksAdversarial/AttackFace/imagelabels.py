@@ -8,20 +8,6 @@ import numpy as np
 from AttackFace import tools
 
 class ImageLabels:
-    """
-    A class for storing true FaceBox and found FaceBox information for a given image 
-
-    Attributes:
-        img_path: the path to the image
-        img_shape: a tuple giving the image shape (height,width,channels)
-        found_box_dict: a dictionary of detector names and found box lists prior to attack 
-        **kwargs: arguments for describing the attack applied (ex: noise_epsilon)
-        drawn_images: a list of file paths for images drawn using draw() method
-    Methods:
-        add_detector_labels: given a detector_dict, set the found_box_dict and return
-        draw_images: drawn image(s) with available boxes and set drawn_images attribute
-        delete_drawn_images: delete all images in drawn_images list and set list to empty
-    """
     def __init__(self, img_path, true_box_list=[], found_box_dict={}, **kwargs):
         self.img_path = img_path
         if (not os.path.isfile(self.img_path)): 

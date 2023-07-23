@@ -8,17 +8,7 @@ from PIL import Image
 
 
 def draw_img_noise_pair_arrays(image_noise_pairs, epsilon, img_num, output_dir, use_mult_noise=False):
-    """
-    Given a list of ImgNoisePair objects, epsilon value, img_num, and output_dir, draw the img
-    and noise and save them to the output_dir with appropriate file names
 
-    Args:
-        image_noise_pairs: list of ImgNoisePair objects
-        epsilon: the noise epsilon value used
-        img_num: a string giving the wider-face file number
-        output_dir: directory to write the output files
-        use_mult_noise: if True, use multiplicative noise file naming. Otherwise use additive name
-    """
     for test_num, img_pair in enumerate(image_noise_pairs):
         attacked_img = img_pair.img
         noise_img = img_pair.noise

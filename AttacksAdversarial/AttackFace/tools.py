@@ -125,16 +125,7 @@ def draw_boxes(image, box_list, color_rgb):
 
 
 def get_matches(target_box_list, potential_match_box_list):
-    """
-    Given a target list of FaceBox objects, finds the best match for each target
-    from the potential_match_box_list
 
-    Args:
-        target_box_list: a list of FaceBox objects 
-        potential_match_box_list: a list of FaceBox objects
-    Returns:
-        best_match: a list of FaceBoxMatch objects, where match is found by largest IoU
-    """
     null_box = FaceBox()
     best_matches = [FaceBoxMatch(target_box, null_box) for target_box in target_box_list]
     for box_pair in best_matches:

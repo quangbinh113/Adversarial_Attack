@@ -9,29 +9,11 @@ from AttackFace import tools, imagelabels
 
 
 class ImgNoisePair():
-    """
-    A class object for storing attacked image and noise array pairs.
-    Expect img and noise to be np.array() objects
-
-    Attributes:
-        img: an array description of the image with a noise attack applied
-        noise: an array description of the noise attack 
-    """
     def __init__(self,img,noise):
         self.img = img
         self.noise = noise
 def create_noisy_image(original_img_path,  output_dir, use_mult_noise=False):
-    """
-    Given a path to an image, create a new image with normally-distributed noise randomly applied
 
-    Args:
-        original_img_path: the path of the image you want to attack
-        epsilon: an integer giving the maximum variation (out of 255)
-        output_dir: the directory where you'd like to store the attacked image
-        use_mult_noise: a bool indicating whether to use multiplicative noise
-    Returns:
-        image_file_path: the path to the output image you just created
-    """
     epsilon = np.random.choice([50])
     if (not os.path.isfile(original_img_path)):
         sys.exit('Bad input image path: ' + original_img_path)
@@ -63,19 +45,6 @@ def create_noisy_image(original_img_path,  output_dir, use_mult_noise=False):
     return image_file_path
 def create_noisy_face(facebox, original_img_path, epsilon, n_tests, output_dir, 
         use_fixed_random_seed=True,use_mult_noise=False):
-    """
-    Given an image path and FaceBox, create an array of attacked image and noise array pairs
-
-    Args:
-        facebox: a FaceBox where we want to apply noise
-        original_img_path: the path of the image you want to attack
-        epsilon: an integer giving the maximum variation (out of 255)
-        n_tests: the number of attacks you'd like to test 
-        output_dir: the directory where you'd like to store the attacked image
-        use_mult_noise: a bool indicating whether to use multiplicative noise
-    Returns:
-        image_noise_pairs: a list of ImgNoisePair objects, pairing attacked image and noise arrays
-    """
     if (not os.path.isfile(original_img_path)):
         sys.exit('Bad input image path: ' + original_img_path)
     if (not os.path.exists(output_dir)): os.makedirs(output_dir)
