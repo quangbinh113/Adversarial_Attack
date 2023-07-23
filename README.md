@@ -45,6 +45,9 @@ In the 'AdversarialDefense/Denoising/DenoisingUsingSRGAN' subfolder, you'll find
 You can run the GUI.ipynb for GUI 
 
 
+## 5. Slide and Presentation
+You can view our slide and presentation on this link : https://goeco.link/HhJUm
+
 ### Usage
 - Detailed usage instructions and setup guides for each defense technique can be found in the respective subfolders.
 
