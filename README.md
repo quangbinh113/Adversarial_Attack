@@ -41,7 +41,7 @@ In the 'AdversarialDefense/Denoising/DenoisingUsingFilters' subfolder, you'll fi
 In the 'AdversarialDefense/Denoising/DenoisingUsingSRGAN' subfolder, you'll find the implementation of denoising adversarial examples using SRGAN (Super-Resolution Generative Adversarial Network).
 
 ![alt text](https://github.com/quangbinh113/CV20222_Adversarial_Attack/blob/main/AdversarialDefense/models/visualize.png?raw=true)
-### GUI
+## 4. Graphical User Interface
 You can run the GUI.ipynb for GUI 
 
 
