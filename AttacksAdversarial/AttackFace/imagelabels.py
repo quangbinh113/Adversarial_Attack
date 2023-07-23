@@ -21,7 +21,6 @@ class ImageLabels:
         except:
             print('Input Image Read Error (ImageLabels init): ' + img_path)  
             raise
-            #raise ValueError 
         image = np.array(image)
         self.img_shape = image.shape
         self.true_box_list = true_box_list
@@ -43,14 +42,6 @@ class ImageLabels:
         return str(self)
     
     def add_detector_labels(self,detector_dict):
-        """
-        For each dictionary entry, find the FaceBox list for that detector and modify attribute
-        
-        Args:
-            detector_dict: a dictionary pairing a facial detector name to the detector
-        Returns: 
-            self
-        """
         if (not os.path.isfile(self.img_path)): 
             sys.exit('Attempted to add detector labels to bad image: ' + self.img_path)
         found_box_dict = {}

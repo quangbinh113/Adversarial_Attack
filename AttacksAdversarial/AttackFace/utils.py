@@ -12,7 +12,6 @@ def draw_img_noise_pair_arrays(image_noise_pairs, epsilon, img_num, output_dir, 
     for test_num, img_pair in enumerate(image_noise_pairs):
         attacked_img = img_pair.img
         noise_img = img_pair.noise
-        # noise_str = 'face_unlabeled_multnoise' if (use_mult_noise) else 'face_unlabeled_addnoise'
         file_suffix = str(test_num) +'.jpg'
 
         image_file_name = file_suffix
@@ -20,10 +19,6 @@ def draw_img_noise_pair_arrays(image_noise_pairs, epsilon, img_num, output_dir, 
         im_pix = Image.fromarray(attacked_img)
         im_pix.save(image_file_path)
 
-        # noise_file_name = noise_str + file_suffix
-        # noise_file_path = os.path.join(output_dir,noise_file_name)
-        # im_noise = Image.fromarray(noise_img)
-        # im_noise.save(noise_file_path)
 
 
 def get_ssim(image_labels, attacked_image_labels):
