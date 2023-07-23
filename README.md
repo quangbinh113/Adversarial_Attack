@@ -42,7 +42,7 @@ In the 'AdversarialDefense/Denoising/DenoisingUsingSRGAN' subfolder, you'll find
 
 ![alt text](https://github.com/quangbinh113/CV20222_Adversarial_Attack/blob/main/AdversarialDefense/models/visualize.png?raw=true)
 ## 4. Graphical User Interface
-You can run the GUI.ipynb for GUI 
+You can run the GUI.ipynb notebook for GUI of Face Defender
 
 
 ## 5. Slide and Presentation
