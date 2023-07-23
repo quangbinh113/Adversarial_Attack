@@ -20,7 +20,7 @@ if __name__ == "__main__":
     output_dir = 'data/attack_image'
     attack_record_filename = 'performance_list.csv'
     result_counter_filename = 'tunnel.csv'
-    use_mult_noise = False #use multiplicative noise, where large pixel value means more noise
+    use_mult_noise = False 
     n_attack_tests = 1
     attack_success_freq_threshold = 0.8
     epsilon_start_value = 16
@@ -28,7 +28,6 @@ if __name__ == "__main__":
     epsilon_delta = 16
     iou_cutoff_value = 0.2
     performance_list = []
-    #a dictionary for storing the counts of how often each type of image error/result occurs
     tunnel_dict = {
         'total_img_count':0,
         'bad_image':0,
@@ -87,8 +86,6 @@ if __name__ == "__main__":
                         truth_iou_noise = 0
                     else:
                         found_box = found_boxes[0]
-
-                    #if you find no faces or the truth-found face IoU is small, the test attack succeeded
                     if len(found_boxes) == 0 :
                         attack_success_count += 1 
                     attack_fail_count += 1
