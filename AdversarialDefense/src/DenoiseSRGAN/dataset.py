@@ -45,7 +45,7 @@ class MyDataset(Dataset):
         tempImg = Image.open(tempImg).convert('RGB')
         Img = np.array(self.transform(tempImg))/255
         nImg = addGaussNoise(Img, self.sigma)
-        nImg = nonlinear_filter(nImg)
+        # nImg = nonlinear_filter(nImg)
         Img = torch.tensor(Img.transpose(2,0,1))
         nImg = torch.tensor(nImg.transpose(2,0,1))
         return Img, nImg

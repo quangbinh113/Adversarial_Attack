@@ -32,7 +32,7 @@ if __name__ == "__main__":
     test = Image.open(input_image_path)
     timg = np.array(test) / 255
     # Assuming you have imported or defined addGaussNoise and nonlinear_filter functions
-    timg = addGaussNoise(timg, 50)
+    # timg = addGaussNoise(timg, 50)
     # timg = nonlinear_filter(timg)
     timg = torch.tensor(timg.transpose(2, 0, 1)).float().unsqueeze(0)
 
