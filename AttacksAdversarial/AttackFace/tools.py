@@ -106,14 +106,6 @@ def get_found_boxes(image, detector, upsample=1):
 
 
 def draw_boxes(image, box_list, color_rgb):
-    """
-    Draw FaceBoxes of a given color onto image
-
-    Args:
-        image: an image for drawing over
-        box_list: a list of FaceBox objects to draw
-        color_rgb: the color to draw the box, given as an RGB triplet 
-    """
     for box in box_list:
         right_edge = box.x1+box.width-1
         if (right_edge >= image.shape[1]): right_edge = image.shape[1]-1
