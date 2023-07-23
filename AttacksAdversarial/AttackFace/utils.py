@@ -42,14 +42,7 @@ def get_ssim(image_labels, attacked_image_labels):
 
 
 def write_csv(rows, output_filename, output_dir):
-    """
-    Given a list of dictionary entries, write the list as a CSV file
 
-    Args:
-        rows: a dictionary or a list of dictionary entries
-        output_filename: the name for the output file
-        output_dir: the path to the directory to write the output file
-    """
     if (len(rows) != 0):
         file_path = os.path.join(output_dir, output_filename)
         with open(file_path, 'w', encoding='utf8', newline='') as output_file:
@@ -63,15 +56,7 @@ def write_csv(rows, output_filename, output_dir):
 
 
 def get_img_paths(img_input_dir, num_imgs):
-    """
-    A function for getting a list of images from a directory
 
-    Args:
-        img_input_dir: the directory containing images or containing directories containing images
-        num_imgs: the desired number of images to return
-    Returns:
-        img_paths: a list of paths to input images. Should have len == num_imgs
-    """
     img_paths = []
     for img_dir in os.scandir(img_input_dir):
         if os.path.isfile(img_dir): img_paths.append(img_dir.path)
@@ -84,14 +69,7 @@ def get_img_paths(img_input_dir, num_imgs):
 
 
 def test_paths(attack_record_filename, result_counter_filename, output_dir):
-    """
-    Check whether the provided output filenames and directory exist and are empty
 
-    Args:
-        attack_record_filename: path for output file for writing CSV record of image attacks
-        result_counter_filename: path for output file for writing CSV record of results counters
-        output_dir: the directory for writing all output images and CSV files
-    """
     if (os.path.exists(attack_record_filename)): 
         sys.exit('Output file ' + attack_record_filename + ' already exists, exiting')
     if (os.path.exists(result_counter_filename)): 
@@ -101,19 +79,6 @@ def test_paths(attack_record_filename, result_counter_filename, output_dir):
         if (user_input != 'y'): sys.exit('Exiting')
 
 def test_image(img_path, detector_dict, detector_name, tunnel_dict):
-    """
-    Run quality tests/checks on an input image and draw the image with true and found face boxes
-
-    Args:
-        img_path: the full path to the desired input image
-        truth_file: the path to the Wider-Face truth file
-        detector_dict: a dictionary of detector_name:face_detector pairs
-        detector_name: the specific detector you're studying from detector_dict
-        tunnel_dict: a dictionary for counting how many images pass/fail a given quality requirement
-    Returns:
-        image_labels: an ImageLabels object with truth and found boxes already calculated
-    """
-
     def quality_error(error_text, counter_name, tunnel_dict):
         tunnel_dict[counter_name] += 1
         raise ValueError(error_text)

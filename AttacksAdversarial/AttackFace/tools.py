@@ -6,20 +6,6 @@ import numpy as np
 from skimage.draw import polygon_perimeter
 
 class FaceBox:
-    """
-    A class for storing bounding boxes of faces
-
-    Attributes:
-        x1: x position of upper-left box corner in pixels 
-        y1: y position of upper-left box corner in pixels
-        width: box width in pixels
-        height: box height in pixels
-        quality: if ground truth, this is a TruthBoxQuality object; for found boxes, it's None
-
-    Methods:
-        area: returns the area of the bounding box in pixels as a float
-        iou: returns the intersection over union between two FaceBox objects
-    """
     def __init__(self, x1=0, y1=0, width=0, height=0, quality=None):
         self.x1 = int(x1)
         self.y1 = int(y1)
@@ -81,16 +67,7 @@ class FaceBoxMatch:
 
 
 def get_found_boxes(image, detector, upsample=1):
-    """
-    Get a list of FaceBox objects found by a given detector
 
-    Args:
-       image: a numpy array for a given image
-       detector: the face detector you want to use
-       upsample: optional upsampling value
-    Returns:
-       found_box_list: list of FaceBox objects found in the image   
-    """
     try: found_faces = detector(image, upsample)
     except:
         error_str = ('get_found_boxes detector object failed to find boxes')
